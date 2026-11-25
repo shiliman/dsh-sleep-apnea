@@ -1,0 +1,45 @@
+{
+  "name": "dsh-sleep-apnea",
+  "version": "0.1.0",
+  "description": "给 DeepSeek Harness 的一条「睡眠呼吸暂停」副线：白天像没充电：反应慢半拍、找词要半天，偶尔一句话说到一半忘了下文。默认非全局、按会话开关、可随时关掉。",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    },
+    "./package.json": "./package.json",
+    "./client": "./client.js"
+  },
+  "files": [
+    "src",
+    "client.js",
+    "README.md"
+  ],
+  "scripts": {
+    "check": "node --check src/index.js && node --check src/panel.js && node --check client.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "apnea"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "dsh": ">=0.2.0-rc.2"
+  }
+}
